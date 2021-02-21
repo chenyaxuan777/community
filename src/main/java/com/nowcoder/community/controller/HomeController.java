@@ -31,7 +31,6 @@ public class HomeController {
 
     @GetMapping(path = "/index")
     public String getIndexPage(Model model, Page page) {
-        System.out.println(page.getCurrent());
         page.setRows(discussPostService.findDiscussPostRows(0));
         page.setPath("/index");
 

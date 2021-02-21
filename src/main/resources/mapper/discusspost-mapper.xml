@@ -7,7 +7,7 @@
     <sql id="selectFields">
         id, user_id, title, content, type, status, create_time, comment_count, score
     </sql>
-<!--userId=0时，首页功能，查全部。userId!=0，查某个用户自己的个人帖子功能    -->
+
     <select id="selectDiscussPosts" resultType="DiscussPost">
         select <include refid="selectFields"></include>
         from discuss_post
