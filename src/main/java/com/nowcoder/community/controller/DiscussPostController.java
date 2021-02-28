@@ -54,7 +54,7 @@ public class DiscussPostController implements CommunityConstant {
     @GetMapping(path = "/detail/{discussPostId}")
     public String getDiscussPost(@PathVariable("discussPostId")int discussPostId, Model model, Page page) {
         // 帖子
-        DiscussPost post = discussPostService.findDisscussPostById(discussPostId);
+        DiscussPost post = discussPostService.findDiscussPostById(discussPostId);
         model.addAttribute("post", post);
         // 作者
         User user = userService.findUserById(post.getUserId());
@@ -65,8 +65,8 @@ public class DiscussPostController implements CommunityConstant {
         page.setPath("/discuss/detail/" + discussPostId);
         page.setRows(post.getCommentCount());
 
-        // 评论：给帖子的评论
-        // 回复：给评论的评论
+        // 评论: 给帖子的评论
+        // 回复: 给评论的评论
         // 评论列表
         List<Comment> commentList = commentService.findCommentsByEntity(
                 ENTITY_TYPE_POST, post.getId(), page.getOffset(), page.getLimit());
@@ -74,7 +74,7 @@ public class DiscussPostController implements CommunityConstant {
         List<Map<String, Object>> commentVoList = new ArrayList<>();
         if (commentList != null) {
             for (Comment comment : commentList) {
-                // 单个评论VO
+                // 评论VO
                 Map<String, Object> commentVo = new HashMap<>();
                 // 评论
                 commentVo.put("comment", comment);
@@ -93,7 +93,7 @@ public class DiscussPostController implements CommunityConstant {
                         replyVo.put("reply", reply);
                         // 作者
                         replyVo.put("user", userService.findUserById(reply.getUserId()));
-                        // 回复的目标
+                        // 回复目标
                         User target = reply.getTargetId() == 0 ? null : userService.findUserById(reply.getTargetId());
                         replyVo.put("target", target);
 
@@ -109,6 +109,7 @@ public class DiscussPostController implements CommunityConstant {
                 commentVoList.add(commentVo);
             }
         }
+
         model.addAttribute("comments", commentVoList);
 
         return "/site/discuss-detail";

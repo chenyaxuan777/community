@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import java.util.ArrayList;
@@ -47,5 +48,10 @@ public class HomeController {
         }
         model.addAttribute("discussPosts", discussPosts);
         return "/index";
+    }
+
+    @GetMapping(path = "/error")
+    public String getErrorPage() {
+        return "/error/500";
     }
 }
