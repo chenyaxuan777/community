@@ -1,6 +1,8 @@
 package com.nowcoder.community.util;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.nowcoder.community.entity.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.DigestUtils;
 
@@ -34,6 +36,7 @@ public class CommunityUtil {
             for (String key : map.keySet())
                 json.put(key, map.get(key));
         }
+
         return json.toJSONString();
     }
 

@@ -63,6 +63,11 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+<!--        redis相关-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
 
         <!--    邮件相关-->
         <dependency>
